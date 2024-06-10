@@ -8,13 +8,11 @@ generator client {
   provider = "prisma-client-js"
 }
 
-
 datasource db {
   provider     = "mysql"
   url          = env("DATABASE_URL")
   relationMode = "prisma"
 }
-
 
 model Account {
   id                String  @id @default(cuid())
@@ -51,7 +49,6 @@ model Session {
   @@index([userId])
 }
 
-
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -62,12 +59,12 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts  Account[]
-  sessions  Session[]
+  accounts Account[]
+  sessions Session[]
 }
 
 model BudgetItem {
-  id          Int      @id @default(autoincrement())
+  id          Int       @id @default(autoincrement())
   description String
   quantity    Int
   unitPrice   Float
@@ -77,6 +74,8 @@ model BudgetItem {
   inCharge    String?
   categoryId  Int?
   category    Category? @relation(fields: [categoryId], references: [id])
+
+  @@index([categoryId])
 }
 
 model Category {
@@ -84,11 +83,13 @@ model Category {
   name        String
   budgetItems BudgetItem[]
   sectionId   Int?
-  section     Section? @relation(fields: [sectionId], references: [id])
+  section     Section?     @relation(fields: [sectionId], references: [id])
+
+  @@index([sectionId])
 }
 
 model Section {
-  id          Int        @id @default(autoincrement())
-  name        String
-  categories  Category[]
+  id         Int        @id @default(autoincrement())
+  name       String
+  categories Category[]
 }
