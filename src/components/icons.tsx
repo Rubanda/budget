@@ -1,4 +1,37 @@
-
+import { ChevronDown, Circle, Contact, CopyCheck, Info, XIcon } from "lucide-react"
+import { MailCheck } from "lucide-react"
+import { ChevronUp } from "lucide-react"
+import {
+  AlertTriangle,
+  ArrowRight,
+  Check,
+  ChevronLeft,
+  ChevronRight,
+  Command,
+  CreditCard,
+  File,
+  LayoutDashboard,
+  FileText,
+  HelpCircle,
+  Image,
+  Laptop,
+  Loader2,
+  LucideProps,
+  MapPin,
+  Moon,
+  MoreVertical,
+  Pizza,
+  Plus,
+  Settings,
+  SunMedium,
+  Trash,
+  User,
+  X,
+  AlignJustify,
+  ThermometerSun,
+  Send,
+  type Icon as LucideIcon,
+} from "lucide-react"
 import { 
     FaceIcon, 
     ImageIcon, 
@@ -25,7 +58,7 @@ import {
     ChatBubbleIcon,
 } from "@radix-ui/react-icons"
 
-
+export type Icon = typeof LucideIcon
 export const Icons = {
   face: FaceIcon,
   image: ImageIcon,
