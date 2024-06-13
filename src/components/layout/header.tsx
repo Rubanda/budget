@@ -5,7 +5,7 @@ import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icons } from "@/components/icons";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import React from "react";
@@ -16,8 +16,12 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { MainSidebar } from "./main-sidebar";
-
-export default function Header() {
+import { UserAccountNav } from "./use-account-nav";
+interface siteHeaderProps {
+  session?: any
+  className?: string
+}
+export default function Header({ session, className }: siteHeaderProps) {
   const pathname = usePathname();
   const { theme, setTheme } = useTheme();
   const [logo, setLogo] = React.useState("/iot-logo.svg"); // Initialize logo state with dark logo
@@ -42,8 +46,9 @@ export default function Header() {
         <div className="">
           {/* Use the logo state for rendering */}
           <Link href="/">
-            <Image src={logo} alt="Pexlle Logo" width={150} height={50} />{" "}
+            {/* <Image src={logo} alt="Pexlle Logo" width={150} height={50} />{" "} */}
             {/* Adjust width and height as needed */}
+            <p className="font-semibold text-xl">Wedding Planner</p>
           </Link>
         </div>
 
@@ -108,6 +113,18 @@ export default function Header() {
               <TooltipContent>Light/Dark</TooltipContent>
             </Tooltip>
           </TooltipProvider>
+          <nav className="flex gap-2">
+            {session ? <UserAccountNav user={session} /> : <Link
+              href="/login"
+              className={cn(
+                buttonVariants({ variant: "default", size: "sm" }),
+                "px-4 disabled"
+              )}
+
+            >
+              Login
+            </Link>}
+          </nav>
         </div>
       </nav>
     </div>

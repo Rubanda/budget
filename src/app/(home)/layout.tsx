@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { SiteHeader } from "@/components/nav/site-head";
-import { Footer } from "@/components/nav/footer";
+import  Header  from "@/components/layout/header";
+import { SiteFooter } from "@/components/layout/site-footer";
 import { getCurrentUser } from "@/lib/session";
 const inter = Inter({ subsets: ["latin"] });
 
@@ -18,13 +18,13 @@ export default async function homeLayout({
   const session = await getCurrentUser()
   return (
     <div className="relative flex min-h-screen flex-col">
-      <SiteHeader className="mx-auto max-w-6xl"
+      <Header
        session={session}
       />
       <main className="flex-1">
         {children}
       </main>
-      <Footer />
+      <SiteFooter />
     </div >
   );
 }
