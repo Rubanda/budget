@@ -1,10 +1,11 @@
 // import { User } from '@prisma/client'
+import { AvatarProps } from '@radix-ui/react-avatar'
 
 import { Icons } from '../components/icons'
 import { Avatar, AvatarFallback } from '../components/ui/avatar'
 import Image from 'next/image'
 
-interface UserAvatarProps {
+interface UserAvatarProps extends AvatarProps {
   user: any //Pick<User, 'image' | 'name'>
 }
 
