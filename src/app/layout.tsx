@@ -19,9 +19,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={cn(
-        "overflow-hidden h-full bg-background "
+    <html lang="en" suppressHydrationWarning>
+      <body className={cn("min-h-screen  bg-background "
       )}>
 
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>

@@ -17,7 +17,7 @@ export default async function homeLayout({
 }>) {
   const session = await getCurrentUser()
   return (
-    <div className="relative flex min-h-screen flex-col">
+    <div className="">
       <Header
        session={session}
       />
