@@ -25,6 +25,7 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
 } from "../ui/navigation-menu";
+import { MobileSidebar } from "./mobile-sidebar";
 interface siteHeaderProps {
   session?: any
   className?: string
@@ -92,7 +93,7 @@ export default function Header({ session, className }: siteHeaderProps) {
     <div className="fixed xl:px-9 sm:px-0 top-0 left-0 right-0 supports-backdrop-blur:bg-background/50 border-b border-muted/20 bg-background/20 backdrop-blur z-20">
       <nav className="h-14 flex items-center justify-between px-4">
         <div className={cn("block sm:!hidden")}>
-          <MainSidebar />
+          <MobileSidebar />
         </div>
         <div className="">
           {/* Use the logo state for rendering */}

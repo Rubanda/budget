@@ -1,91 +1,82 @@
-import Link from "next/link";
-import { usePathname } from "next/navigation";
-import { Icons } from "@/components/icons";
-import { cn } from "@/lib/utils";
-import { NavItem } from "@/types";
-import { Dispatch, SetStateAction } from "react";
+'use client';
+
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
+
+import { Icons } from '@/components/icons';
+import { cn } from '@/lib/utils';
+import { NavItem } from '@/types';
+import { Dispatch, SetStateAction } from 'react';
+import { useSidebar } from '@/hooks/useSidebar';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+  TooltipTrigger
+} from './ui/tooltip';
+
 interface DashboardNavProps {
   items: NavItem[];
   setOpen?: Dispatch<SetStateAction<boolean>>;
-  isCollapsed?: boolean; // Make it optional
+  isMobileNav?: boolean;
 }
 
 export function DashboardNav({
   items,
   setOpen,
-  isCollapsed,
+  isMobileNav = false
 }: DashboardNavProps) {
   const path = usePathname();
+  const { isMinimized } = useSidebar();
 
   if (!items?.length) {
     return null;
   }
 
+  console.log('isActive', isMobileNav, isMinimized);
+
   return (
-    <TooltipProvider delayDuration={50}>
-      <nav className="grid items-start gap-2">
+    <nav className="grid items-start gap-2">
+      <TooltipProvider>
         {items.map((item, index) => {
-          const Icon = Icons[item.icon || "arrowRight"];
-          const isHome = item.href === "/dash" && path === "/dash";
-          const isActive =
-            item.href !== "/dash" && path.startsWith(item.href ?? "");
-
-          const link = (
-            <Link
-              key={index}
-              href={item.disabled ? "/" : item.href!} // Use the non-null assertion operator here
-              onClick={() => setOpen?.(false)}
-            >
-              <span
-                className={cn(
-                  "text-muted-foreground group flex items-center rounded-md px-3 py-2 text-sm font-medium hover:bg-primary/10",
-                  isHome || isActive
-                    ? "text-secondary bg-primary hover:bg-primary rounded-md justify-start"
-                    : "transparent",
-                  item.disabled && "cursor-not-allowed opacity-80"
-                )}
-              >
-                <Icon className="icon-element h-5 w-4" />
-                {isCollapsed ? null : (
-                  <span className="text-element ml-2 h-5">{item.title}</span>
-                )}
-                {isCollapsed
-                  ? null
-                  : item.count && (
-                      <span className="text-element ml-auto text-xs font-semibold">
-                        {item.count}
-                      </span>
-                    )}
-                {isCollapsed
-                  ? null
-                  : item.tag && (
-                      <span className="text-element ml-auto bg-[#50e3c1] text-black text-xs px-2 rounded-md">
-                        {item.tag}
-                      </span>
-                    )}
-              </span>
-            </Link>
-          );
-
+          const Icon = Icons[item.icon || 'mix'];
           return (
-            item.href &&
-            (isCollapsed ? (
+            item.href && (
               <Tooltip key={index}>
-                <TooltipTrigger asChild>{link}</TooltipTrigger>
-                <TooltipContent side="right">{item.title}</TooltipContent>
+                <TooltipTrigger asChild>
+                  <Link
+                    href={item.disabled ? '/' : item.href}
+                    className={cn(
+                      'flex items-center gap-2 overflow-hidden rounded-md py-2 text-sm font-medium hover:bg-accent hover:text-accent-foreground',
+                      path === item.href ? 'bg-accent' : 'transparent',
+                      item.disabled && 'cursor-not-allowed opacity-80'
+                    )}
+                    onClick={() => {
+                      if (setOpen) setOpen(false);
+                    }}
+                  >
+                    <Icon className={`ml-3 size-5`} />
+
+                    {isMobileNav || (!isMinimized && !isMobileNav) ? (
+                      <span className="mr-2 truncate">{item.title}</span>
+                    ) : (
+                      ''
+                    )}
+                  </Link>
+                </TooltipTrigger>
+                <TooltipContent
+                  align="center"
+                  side="right"
+                  sideOffset={8}
+                  className={!isMinimized ? 'hidden' : 'inline-block'}
+                >
+                  {item.title}
+                </TooltipContent>
               </Tooltip>
-            ) : (
-              link
-            ))
+            )
           );
         })}
-      </nav>
-    </TooltipProvider>
+      </TooltipProvider>
+    </nav>
   );
 }

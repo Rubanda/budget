@@ -56,6 +56,7 @@ import {
     Pencil2Icon,
     Pencil1Icon,
     ChatBubbleIcon,
+    GearIcon,
 } from "@radix-ui/react-icons"
 
 export type Icon = typeof LucideIcon
@@ -84,6 +85,7 @@ export const Icons = {
   trash: TrashIcon,
   pencil: Pencil1Icon,
   chat: ChatBubbleIcon,
+  settings: GearIcon,
   google: ({ ...props }: any) => (
     <svg width="50px"
       height="50px"
