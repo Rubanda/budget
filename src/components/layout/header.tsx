@@ -1,21 +1,12 @@
 "use client";
 import { cn } from "@/lib/utils";
-import { Moon, Sun } from "lucide-react";
-import { useTheme } from "next-themes";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Icons } from "@/components/icons";
-import { Button, buttonVariants } from "@/components/ui/button";
+import {  buttonVariants } from "@/components/ui/button";
 import { siteConfig } from "@/config/site";
 import Image from "next/image";
 import React from "react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
-import { MainSidebar } from "./main-sidebar";
 import { UserAccountNav } from "./use-account-nav";
 import {
   NavigationMenu,
@@ -41,20 +32,24 @@ interface FeatureProps {
 
 const routeList: RouteProps[] = [
   {
-    href: "#testimonials",
+    href: "/#testimonials",
     label: "Testimonials",
   },
   {
-    href: "#team",
+    href: "/#team",
     label: "Team",
   },
   {
-    href: "#contact",
+    href: "/#contact",
     label: "Contact",
   },
   {
-    href: "#faq",
+    href: "/#faq",
     label: "FAQ",
+  },
+  {
+    href:"/wedding",
+    label:"Wedding"
   },
 ];
 const featureList: FeatureProps[] = [
@@ -75,19 +70,7 @@ const featureList: FeatureProps[] = [
 ];
 export default function Header({ session, className }: siteHeaderProps) {
   const pathname = usePathname();
-  const { theme, setTheme } = useTheme();
-  const [logo, setLogo] = React.useState("/iot-logo.svg"); // Initialize logo state with dark logo
 
-  React.useEffect(() => {
-    // Assuming the 'system' theme aligns with light mode
-    const effectiveTheme = theme === "system" ? "light" : theme;
-
-    if (effectiveTheme === "light") {
-      setLogo("/iot-logo.svg"); // Path for the light theme logo
-    } else {
-      setLogo("/iot-logo.svg"); // Path for the dark theme logo
-    }
-  }, [theme]);
 
   return (
     <div className="fixed xl:px-9 sm:px-0 top-0 left-0 right-0 supports-backdrop-blur:bg-background/50 border-b border-muted/20 bg-background/20 backdrop-blur z-20">
@@ -149,43 +132,7 @@ export default function Header({ session, className }: siteHeaderProps) {
           </NavigationMenuItem>
         </NavigationMenuList>
       </NavigationMenu>
-
-        <div className="flex items-center justify-center md:flex">
-
-          <Link
-            href={siteConfig.links.twitter}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <div className="flex items-center justify-center w-9 h-9">
-              <Icons.google className="h-3 w-3 fill-current" />
-              <span className="sr-only">Twitter</span>
-            </div>
-          </Link>
-
-          <TooltipProvider delayDuration={100}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="flex items-center justify-center w-9 h-9"
-                >
-                  <Sun
-                    className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0"
-                    onClick={() => setTheme("dark")}
-                    strokeWidth={1}
-                  />
-                  <Moon
-                    className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100"
-                    onClick={() => setTheme("light")}
-                    strokeWidth={1}
-                  />
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent>Light/Dark</TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
+        <div className="flex items-center gap-3 justify-center md:flex">
           <nav className="flex gap-2">
             {session ? <UserAccountNav user={session} /> : <Link
               href="/login"
@@ -193,7 +140,6 @@ export default function Header({ session, className }: siteHeaderProps) {
                 buttonVariants({ variant: "default", size: "sm" }),
                 "px-4 disabled"
               )}
-
             >
               Login
             </Link>}

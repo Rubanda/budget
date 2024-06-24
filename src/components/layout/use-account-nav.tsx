@@ -12,6 +12,7 @@ import {
   DropdownMenuTrigger,
 } from '../ui/dropdown-menu'
 import { UserAvatar } from '../user-avatar'
+import { Icons } from '../icons'
 
 interface UserAccountNavProps extends React.HTMLAttributes<HTMLDivElement> {
   user: Pick<User, 'name' | 'image' | 'email'>
@@ -39,13 +40,16 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
         </div>
         <DropdownMenuSeparator />
         <DropdownMenuItem asChild>
-          <Link href='/dash/'>Workspace</Link>
+          <Link href='/dashboard/'>
+          <Icons.dashboard className='mr-2'/> Workspace</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href='/dash/profile'>Profile</Link>
+          <Link href='/dashboard/profile'>
+          <Icons.user className='mr-2'/>Profile</Link>
         </DropdownMenuItem>
         <DropdownMenuItem asChild>
-          <Link href='/dash/settings'>Settings</Link>
+          <Link href='/dashboard/settings'>
+          <Icons.settings className='mr-2'/> Settings</Link>
         </DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem
@@ -56,7 +60,7 @@ export function UserAccountNav({ user }: UserAccountNavProps) {
               callbackUrl: `${window.location.origin}/sign-in`,
             })
           }}>
-          Sign out
+         <Icons.chevronLeft className='mr-2'/> Sign out
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>

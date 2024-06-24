@@ -1,12 +1,6 @@
 import dayjs from "dayjs";
 import customParseFormat from "dayjs/plugin/customParseFormat";
 import React, { useEffect } from "react";
-import { Shell } from "@/components/shell/shell";
-import {
-  PageHeader,
-  PageHeaderDescription,
-  PageHeaderHeading,
-} from "@/components/shell/page-header";
 import { getCurrentUser } from '@/lib/session';
 dayjs.extend(customParseFormat);
 interface Props {
@@ -15,6 +9,26 @@ interface Props {
   };
 }
 import * as z from "zod";
+import { LayoutGrid } from "@/components/ui/layout-grid";
+import { Card } from "@/components/ui/card";
+import Link from "next/link";
+
+const weddings = [
+  {
+    id: 1,
+    title: "Mugisha's Wedding",
+    date: "2023-12-12",
+    description: "Mugisha's wedding is going to be the best wedding of the year",
+
+  },
+  {
+    id: 2,
+    title: "Major's Wedding",
+    date: "2024-06-22",
+    desription: "Major's wedding is going to be the best wedding of the year",
+
+  }
+]
 
 const searchParamsSchema = z.object({
   page: z.string().default("1"),
@@ -22,46 +36,41 @@ const searchParamsSchema = z.object({
 });
 export default async function Page({ searchParams }: Props) {
   const session = await getCurrentUser()
-  const { page, per_page } =
-    searchParamsSchema.parse(searchParams);
-  const pageAsNumber = Number(page);
-  const fallbackPage =
-    isNaN(pageAsNumber) || pageAsNumber < 1 ? 1 : pageAsNumber;
-  // Number of items per page
-  const perPageAsNumber = Number(per_page);
-  const limit = isNaN(perPageAsNumber) ? 10 : perPageAsNumber;
-  // Number of items to skip
-  const offset = fallbackPage > 0 ? (fallbackPage - 1) * limit : 0;
+  console.log(session)
   // Column and order to sort by
-  if (!session) return (
-    <Shell>
-      <div className="flex items-center justify-center w-full h-full">
-        <div className="flex flex-col items-center space-y-4">
-          <h1 className="text-3xl font-semibold">You are not logged in</h1>
-          <span className="text-muted-foreground">
-            Login in to view you the logs.
-          </span>
-        </div>
-      </div>
-    </Shell>
-  )
-  return (
-    <Shell className="max-auto max-w-6xl flex-1 space-y-4  p-4 pt-6 md:p-8">
-      <div className="xxs:flex-row flex flex-col gap-4 pr-1 ">
-        <PageHeader
-          id="dashboard-event-page-header"
-          aria-labelledby="dashboard-event-page-header-heading"
-        >
-          <div className="flex space-x-4">
-            <PageHeaderHeading size="sm" className="flex-1">
-              Dev Punica Documents
-            </PageHeaderHeading>
+  // if (!session) return (
+  //   <Shell>
+  //     <div className="flex items-center justify-center w-full h-full">
+  //       <div className="flex flex-col items-center space-y-4">
+  //         <h1 className="text-3xl font-semibold">You are not logged in</h1>
+  //         <span className="text-muted-foreground">
+  //           Login in to view you the logs.
+  //         </span>
+  //       </div>
+  //     </div>
+  //   </Shell>
+  // )
 
-          </div>
-d            Check Documents here.
-d        </PageHeader>
+  return (
+
+    <div className="mx-auto max-w-6xl py-20">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {weddings.map((wedding) => (
+          <Card key={wedding.id} className="p-4">
+            <Link href={`/wedding/${wedding.id}`}>
+              <h1>
+                {wedding.title}
+              </h1>
+            </Link>
+          </Card>
+        ))}
       </div>
-      {/* <Documents result={result} pageCount={pageCount} /> */}
-    </Shell>
+      {/* <h1>Hi</h1>
+        <p>
+          {`We're more than just a tool, we're a community of passionate
+          creators. Get access to exclusive resources, tutorials, and support.`}
+        </p> */}
+
+    </div>
   )
 }
