@@ -31,21 +31,25 @@ interface FeatureProps {
 }
 
 const routeList: RouteProps[] = [
+  // {
+  //   href: "/#testimonials",
+  //   label: "Testimonials",
+  // },
+  // {
+  //   href: "/#team",
+  //   label: "Team",
+  // },
+  // {
+  //   href: "/#contact",
+  //   label: "Contact",
+  // },
+  // {
+  //   href: "/#faq",
+  //   label: "FAQ",
+  // },
   {
-    href: "/#testimonials",
-    label: "Testimonials",
-  },
-  {
-    href: "/#team",
-    label: "Team",
-  },
-  {
-    href: "/#contact",
-    label: "Contact",
-  },
-  {
-    href: "/#faq",
-    label: "FAQ",
+    href:"/dashboard",
+    label:"Dashboard"
   },
   {
     href:"/wedding",
@@ -89,7 +93,7 @@ export default function Header({ session, className }: siteHeaderProps) {
 
         <NavigationMenu className="hidden lg:block mx-auto">
         <NavigationMenuList>
-          <NavigationMenuItem>
+          {/* <NavigationMenuItem>
             <NavigationMenuTrigger className="bg-card text-base">
               Features
             </NavigationMenuTrigger>
@@ -119,7 +123,7 @@ export default function Header({ session, className }: siteHeaderProps) {
                 </ul>
               </div>
             </NavigationMenuContent>
-          </NavigationMenuItem>
+          </NavigationMenuItem> */}
 
           <NavigationMenuItem>
             {routeList.map(({ href, label }) => (
