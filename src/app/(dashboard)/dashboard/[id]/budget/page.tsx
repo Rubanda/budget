@@ -1,7 +1,10 @@
+import Budget from '@/components/budget/budget'
 import React from 'react'
 
-export default function Budget () {
+export default function Page () {
   return (
-    <div>Budget</div>
+    <div>
+      <Budget />
+    </div>
   )
 }
