@@ -27,7 +27,7 @@ export default function LoginPage() {
       </Link>
       <div className="mx-auto flex w-full flex-col justify-center space-y-6 sm:w-[350px]">
         <div className="flex flex-col space-y-2 text-center">
-        <span className="mx-auto font-semibold text-foreground tracking-tight">Punica Calendar Demo</span>
+        <span className="mx-auto font-semibold text-foreground tracking-tight">WP</span>
           <h1 className="text-2xl font-semibold tracking-tight">
             Welcome back
           </h1>
@@ -37,12 +37,7 @@ export default function LoginPage() {
         </div>
         <UserAuthForm />
         <p className="px-8 text-center text-sm text-muted-foreground">
-          <Link
-            href="https://punica.app"
-            className="hover:text-brand underline underline-offset-4"
-          >
-            Don&apos;t have an account? Contact Punica.app
-          </Link>
+            Don&apos;t have an account? Create One..
         </p>
       </div>
     </div>
