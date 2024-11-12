@@ -35,6 +35,7 @@
     "embla-carousel-react": "^8.1.5",
     "framer-motion": "^11.2.11",
     "lucide-react": "^0.456.0",
+    "nanoid": "^5.0.8",
     "next": "14.2.3",
     "next-auth": "^4.24.7",
     "next-themes": "^0.3.0",
@@ -50,13 +51,13 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
-    "typescript": "^5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "15.0.3",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
-    "eslint": "^8",
-    "eslint-config-next": "15.0.3"
+    "typescript": "^5"
   }
 }
