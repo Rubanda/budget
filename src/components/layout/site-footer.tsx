@@ -21,14 +21,14 @@ export function SiteFooter({ className, orgId }: { className?: string; orgId?: s
         if (effectiveTheme === "light") {
             setLogo("/iot-logo.svg"); // Path for the light theme logo
         } else {
-            setLogo("/iot-logo.svg"); // Path for the dark theme logo
+            setLogo("/iot-logo.svg"); 
         }
     }, [theme]);
     return (
         <footer className="">
-            <div className="container flex   items-center justify-between gap-4  md:h-4 md:flex-col md:py-0">
+            <div className="container flex   items-center justify-between gap-4  md:h-4 md:py-0">
                 <p className="text-center text-sm leading-loose md:text-left">
-                    Masata
+                   Rweru 
                 </p>
                 <TooltipProvider delayDuration={100} >          <Tooltip>
                     <TooltipTrigger asChild>
@@ -52,9 +52,6 @@ export function SiteFooter({ className, orgId }: { className?: string; orgId?: s
                     <TooltipContent>Light/Dark</TooltipContent>
                 </Tooltip>
                 </TooltipProvider>
-                <p className="text-center text-muted-foreground text-sm leading-loose md:text-left">
-                    Org {orgId?.split('-')[0]}
-                </p>
             </div>
         </footer>
     );

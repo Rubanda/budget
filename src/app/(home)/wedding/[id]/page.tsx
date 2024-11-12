@@ -36,13 +36,13 @@ const cards = [
       
   },]
 interface params {
-  params: {
+  params: Promise<{
     id: string
-  }
+  }>
 }
-export default function Page(params: params) {
+export default async function Page(params: params) {
   // searchparams nextjs get id
-  console.log('[params]', params.params.id)
+  console.log('[params]', (await params.params).id)
   const { params: { id } } = params
   const mugisha = cards.find((card) => card.id === +id)
   console.log(mugisha?.image)

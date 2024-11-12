@@ -3,7 +3,7 @@
 import { Marquee } from "@devnomic/marquee";
 import "@devnomic/marquee/dist/index.css";
 import { icons } from "lucide-react";
-import { Icon } from "../ui/icon";
+import { Icons } from "../icons";
 interface sponsorsProps {
   icon: string;
   name: string;
@@ -54,9 +54,9 @@ export const SponsorsSection = () => {
               key={name}
               className="flex items-center text-xl md:text-2xl font-medium"
             >
-              <Icon
+              <Icons.download
                 name={icon as keyof typeof icons}
-                size={32}
+                
                 color="white"
                 className="mr-2"
               />

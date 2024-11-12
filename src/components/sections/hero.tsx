@@ -13,28 +13,6 @@ export const HeroSection = () => {
     <section className="container w-full">
       <div className="grid place-items-center lg:max-w-screen-xl gap-8 mx-auto py-20 md:py-32">
         <div className="text-center space-y-8">
-          {/* <Badge variant="outline" className="flex flex-col gap-2 items-start  md:flex-row text-sm py-2">
-            <div className="flex gap-2">
-              <span className="mr-2 text-primary">
-                <Badge>Prev</Badge>
-              </span>
-              <span>Mugisha</span>
-              <span className="text-muted-foreground" >{dayjs().format('dd M YYYY')}</span>
-            </div><div className="flex gap-2">
-              <span className="mr-2 text-primary">
-                <Badge>Prev</Badge>
-              </span>
-              <span>Major</span>
-              <span className="text-muted-foreground" >{dayjs().format('dd M YYYY')}</span>
-            </div>
-            <div className="flex gap-2">
-              <span className="mr-2 text-primary">
-                <Badge>Next</Badge>
-              </span>
-              <span>Muhire Moise</span>
-              <span className="text-muted-foreground">Pending...</span>
-            </div>
-          </Badge> */}
 
           <div className="max-w-screen-md mx-auto text-center text-4xl md:text-6xl font-bold">
             <h1>

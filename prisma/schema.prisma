@@ -59,37 +59,71 @@ model User {
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
 
-  accounts Account[]
-  sessions Session[]
+  events      Event[] // One-to-many: One user can manage many events
+  tasks       Task[]       @relation("UserTasks") // Users can be assigned multiple tasks
+  accounts    Account[]
+  sessions    Session[]
+  assignments Assignment[]
 }
 
-model BudgetItem {
-  id          Int       @id @default(autoincrement())
-  description String
-  quantity    Int
-  unitPrice   Float
-  total       Float
-  amountPaid  Float
-  remaining   Float
-  inCharge    String?
-  categoryId  Int?
-  category    Category? @relation(fields: [categoryId], references: [id])
+// Define Event model
+model Event {
+  id        Int      @id @default(autoincrement())
+  name      String
+  date      DateTime
+  budget    Budget?
+  userId    String // Foreign key to User
+  user      User     @relation(fields: [userId], references: [id])
+  tasks     Task[] // One-to-many: One event can have multiple tasks
+  createdAt DateTime @default(now())
 
-  @@index([categoryId])
+  @@index([userId])
 }
 
-model Category {
+// Define Budget model
+model Budget {
   id          Int          @id @default(autoincrement())
-  name        String
-  budgetItems BudgetItem[]
-  sectionId   Int?
-  section     Section?     @relation(fields: [sectionId], references: [id])
-
-  @@index([sectionId])
+  total       Float // Total planned budget
+  actual      Float // Actual spent budget
+  eventId     Int          @unique
+  event       Event        @relation(fields: [eventId], references: [id])
+  budgetItems BudgetItem[] // A budget has multiple items
 }
 
-model Section {
-  id         Int        @id @default(autoincrement())
-  name       String
-  categories Category[]
+// Define BudgetItem model
+model BudgetItem {
+  id          Int    @id @default(autoincrement())
+  name        String
+  plannedCost Float // Planned cost for the item
+  actualCost  Float // Actual cost incurred for the item
+  budgetId    Int // Foreign key to Budget
+  budget      Budget @relation(fields: [budgetId], references: [id])
+
+  @@index([budgetId])
+}
+
+// Define Task model
+model Task {
+  id          Int          @id @default(autoincrement())
+  title       String
+  description String?
+  status      String // e.g., "pending", "in-progress", "completed"
+  dueDate     DateTime?
+  eventId     Int // Foreign key to Event
+  event       Event        @relation(fields: [eventId], references: [id])
+  assignees   User[]       @relation("UserTasks") // Many-to-many: Tasks can be assigned to multiple users
+  assignments Assignment[]
+
+  @@index([eventId])
+}
+
+// Define Assignment join model for Users <-> Tasks many-to-many relation
+model Assignment {
+  id     Int    @id @default(autoincrement())
+  userId String
+  taskId Int
+  user   User   @relation(fields: [userId], references: [id])
+  task   Task   @relation(fields: [taskId], references: [id])
+
+  @@unique([userId, taskId])
 }

@@ -1,6 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Icon } from "@/components/ui/icon";
 import { icons } from "lucide-react";
+import { Icons } from "../icons";
 
 interface BenefitsProps {
   icon: string;
@@ -60,9 +60,7 @@ export const BenefitsSection = () => {
             >
               <CardHeader>
                 <div className="flex justify-between">
-                  <Icon
-                    name={icon as keyof typeof icons}
-                    size={32}
+                  <Icons.check
                     color="hsl(var(--primary))"
                     className="mb-6 text-primary"
                   />

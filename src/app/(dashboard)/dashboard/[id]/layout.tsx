@@ -1,6 +1,5 @@
 import DashHeader from '@/components/layout/dash-header';
 import DashboardLayout from '@/components/layout/dash-layout';
-import { SiteFooter } from '@/components/layout/site-footer';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -8,16 +7,14 @@ export const metadata: Metadata = {
   description: 'Basic dashboard with Next.js and Shadcn'
 };
 
-export default function DashboardsLayout({
+export default function EventLayout({
   children
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <div className='flex flex-col min-h-full'>
-      <DashHeader />
-      {children}
-      <SiteFooter />
-    </div>
+    <DashboardLayout eventId={'1'} >
+          {children}
+        </DashboardLayout>
   );
 }
