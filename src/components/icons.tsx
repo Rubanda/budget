@@ -1,6 +1,4 @@
-import { ChevronDown, Circle, Contact, CopyCheck, Info, XIcon } from "lucide-react"
-import { MailCheck } from "lucide-react"
-import { ChevronUp } from "lucide-react"
+
 import {
   AlertTriangle,
   ArrowRight,
@@ -29,6 +27,7 @@ import {
   X,
   AlignJustify,
   ThermometerSun,
+  LogOut,
   Send,
   type Icon as LucideIcon,
 } from "lucide-react"
@@ -83,6 +82,7 @@ export const Icons = {
   checkCircle: CheckCircledIcon,
   check: CheckCircledIcon,
   trash: TrashIcon,
+  logout: LogOut,
   pencil: Pencil1Icon,
   chat: ChatBubbleIcon,
   settings: GearIcon,

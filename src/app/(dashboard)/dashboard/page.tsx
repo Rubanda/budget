@@ -23,10 +23,10 @@ export default function Page() {
       <h1>
         Wedding Project You Follow
       </h1>
-      <div className="flex  gap-3">
+      <div className="flex flex-col md:flex-row gap-3">
 
         <Card className="w-[280px] p-6 space-y-4">
-          <Link href="/dashboard/1" >
+          <Link href="/dashboard/event/1" >
             <div className="h-8 w-8 rounded-full bg-muted flex items-center justify-center">
               <Icons.plus className="h-4 w-4 text-muted-foreground" />
             </div>

@@ -25,10 +25,8 @@ import { NavItem } from "@/types"
 
 export function NavMain({
   items,
-  eventId,
 }: {
   items: NavItem[],
-  eventId: string,
 }) {
   const path = usePathname();
   const { setOpenMobile, isMobile } = useSidebar()
@@ -38,11 +36,13 @@ export function NavMain({
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => {
-          console.log([path, eventId, item.href])
+          console.log([item?.href])
           const Icon = Icons[item?.icon! || "arrowRight"];
-          const isHome = item.href === `/` && path === `/dashboard/${eventId}`;
-          const itemPath = `/dashboard/${eventId}${item?.href!}`;
+          const isHome = item.href === `/` && path === `/dashboard`;
+          const itemPath = `/dashboard${item?.href!}`;
           const isActive = path === itemPath || (item.href !== '/' && path.startsWith(itemPath));
+
+          console.log([path, itemPath])
           return (
 
             <React.Fragment key={item.title}>

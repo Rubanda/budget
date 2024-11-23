@@ -12,26 +12,27 @@ export const landingConfig: LandingConfig = {
       isProcted: false,
     },
     {
-      title: "Budget",
-      href: "/budget",
-      icon: "mix",
-      label: "layers",
+      title: "Event",
+      href: "/event",
+      icon: "user",
+      label: "user",
       isProcted: false,
     },
-      {
-        title: "check List",
-        href: "/checklist",
-        icon: "user",
-        label: "user",
-        isProcted: false,
-      },
     {
-      title: "Guest List",
-      href: "/guestlist",
+      title: "Members",
+      href: "/members",
       icon: "user",
+      label: "user",
+      isProcted: false,
+    },
+
+    {
+      title: "Settings",
+      href: "/settings",
+      icon: "settings",
       label: "member",
       isProcted: false,
     },
-   
+
   ],
 }

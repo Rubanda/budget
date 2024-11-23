@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dropdown-menu';
 import { signOut, useSession } from 'next-auth/react';
 import Link from 'next/link';
+import { Icons } from '../icons';
 export function UserNav() {
   const { data: session } = useSession();
   if (session) {
@@ -44,12 +45,14 @@ export function UserNav() {
           <DropdownMenuGroup>
             <Link href="/dashboard/profile" >
               <DropdownMenuItem>
+                <Icons.user />
                 Profile
                 <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
               </DropdownMenuItem>
             </Link>
             <Link href="/dashboard/settings">
               <DropdownMenuItem>
+                <Icons.settings />
                 Settings
                 <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
               </DropdownMenuItem>
@@ -57,6 +60,7 @@ export function UserNav() {
           </DropdownMenuGroup>
           <DropdownMenuSeparator />
           <DropdownMenuItem onClick={() => signOut()}>
+            <Icons.logout />
             Log out
             <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
           </DropdownMenuItem>

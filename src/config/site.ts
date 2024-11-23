@@ -1,12 +1,12 @@
 export const siteConfig = {
-  name: "Digital Identity",
+  name: "Wedding Planner",
   url: "https://iot.neu.edu.tr/",
   ogImage: "https://ui.shadcn.com/og.jpg",
   description:
-    "Neu Iot is a platform generating Identity Token.",
+    "wedding planner by Rweru.com.",
   links: {
     twitter: "https://twitter.com/YakinDoguUni",
-    github: "https://github.com/",
+    github: "https://github.com/rubanda",
   },
   user: {
     name: "Rubanda",

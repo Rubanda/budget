@@ -13,24 +13,25 @@ import {
   SidebarProvider,
   SidebarTrigger,
 } from "@/components/ui/sidebar"
+import DashHeader from "./dash-header";
+import { SiteFooter } from "./site-footer";
 interface Dashboard{
     children: React.ReactNode;
-    eventId: string;
 }
-export default function DashboardLayout({children, eventId}: Dashboard) {
+export default function DashboardLayout({children}: Dashboard) {
   return (
     <SidebarProvider>
-      <AppSidebar eventId={eventId}/>
+      <AppSidebar />
       <SidebarInset>
-        <header className="flex h-16 shrink-0 items-center gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
+        <header className="flex h-16  shrink-0 items-center justify-between gap-2 transition-[width,height] ease-linear group-has-[[data-collapsible=icon]]/sidebar-wrapper:h-12">
           <div className="flex items-center gap-2 px-4">
             <SidebarTrigger className="-ml-1" />
             <Separator orientation="vertical" className="mr-2 h-4" />
             <Breadcrumb>
               <BreadcrumbList>
                 <BreadcrumbItem className="hidden md:block">
-                  <BreadcrumbLink href="#">
-                    Building Your Application
+                  <BreadcrumbLink href="/dashboard">
+                   Home
                   </BreadcrumbLink>
                 </BreadcrumbItem>
                 <BreadcrumbSeparator className="hidden md:block" />
@@ -40,11 +41,15 @@ export default function DashboardLayout({children, eventId}: Dashboard) {
               </BreadcrumbList>
             </Breadcrumb>
           </div>
+          <DashHeader />
+
         </header>
         <div className="flex flex-1 flex-col gap-4 p-4 pt-0">
         {children}
+        <SiteFooter />
         </div>
       </SidebarInset>
+      
     </SidebarProvider>
   )
 }

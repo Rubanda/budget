@@ -157,18 +157,17 @@ const data = {
   ],
 }
 
-export function AppSidebar({...props }: React.ComponentProps<typeof Sidebar> & {eventId: string}) {
-  const eventId = props.eventId
+export function AppSidebar({...props }: React.ComponentProps<typeof Sidebar> ) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
        <MainLogo />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain eventId={eventId!} items={landingConfig.mainNav} />
+        <NavMain items={landingConfig.mainNav} />
       </SidebarContent>
       <SidebarFooter>
-        <NavUser user={data.user} />
+        {/* <NavUser user={data.user} /> */}
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
