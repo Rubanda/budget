@@ -30,6 +30,7 @@ import {
   LogOut,
   Send,
   type Icon as LucideIcon,
+  Text,
 } from "lucide-react"
 import { 
     FaceIcon, 
@@ -86,6 +87,7 @@ export const Icons = {
   pencil: Pencil1Icon,
   chat: ChatBubbleIcon,
   settings: GearIcon,
+  text: Text,
   google: ({ ...props }: any) => (
     <svg width="50px"
       height="50px"
