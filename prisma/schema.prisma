@@ -126,4 +126,5 @@ model Assignment {
   task   Task   @relation(fields: [taskId], references: [id])
 
   @@unique([userId, taskId])
+  @@index([taskId])
 }
